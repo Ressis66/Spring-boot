@@ -1,0 +1,6 @@
+datasource:
+  data: src/main/resources/QuestionsList.csv
+
+spring:
+    main:
+      lazy-initialization: true
