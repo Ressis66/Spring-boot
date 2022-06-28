@@ -4,3 +4,4 @@ datasource:
 spring:
     main:
       lazy-initialization: true
+      allow-circular-references: true

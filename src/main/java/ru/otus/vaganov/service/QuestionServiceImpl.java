@@ -1,7 +1,7 @@
 package ru.otus.vaganov.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
 import org.springframework.stereotype.Service;
 import ru.otus.vaganov.dao.QuestionDao;
 import ru.otus.vaganov.domain.Question;
@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
+
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
@@ -23,6 +24,7 @@ public class QuestionServiceImpl implements QuestionService {
   public QuestionServiceImpl(QuestionDao questionDao) {
     this.questionDao = questionDao;
   }
+
 
   @Override
   public List<Question> getQuestionsList(User user) {
@@ -42,12 +44,14 @@ public class QuestionServiceImpl implements QuestionService {
       System.out.println("You are lucky boy!");
     else System.out.println("You are stupid boy!");
   }
+
   @Override
   public User initUser(String line) {
     List<String> nameAndSurname = Arrays.asList(line.split("\\s*,\\s*"));
     User user = new User(nameAndSurname.get(0), nameAndSurname.get(1));
     return user;
   }
+
   @Override
   public void initQuestions(User user){
     List<Question> questions =  getQuestionsList(user);
@@ -57,6 +61,7 @@ public class QuestionServiceImpl implements QuestionService {
     System.out.println("______________________________________________");
     System.out.println(user.getName() + ", please, enter question_id and, after comma, name of the right answer");
   }
+
   @Override
   public void initTestingService() throws IOException {
     System.out.println("Please name and, after comma, surname of the User");
