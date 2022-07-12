@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.MessageSource;
 import ru.otus.vaganov.dao.QuestionDao;
 import ru.otus.vaganov.dao.QuestionDaoSimple;
 import ru.otus.vaganov.domain.Question;
@@ -16,14 +17,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @SpringBootTest
 class VaganovApplicationTests {
 
 	VaganovApplicationTests() throws FileNotFoundException {
 	}
-
-	QuestionDao simple = new QuestionDaoSimple("src/main/resources/QuestionsList.csv");
+	MessageSource messageSource;
+	QuestionDao simple = new QuestionDaoSimple(messageSource);
   QuestionService service = new QuestionServiceImpl(simple);
 
 

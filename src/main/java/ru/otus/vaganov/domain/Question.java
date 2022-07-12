@@ -28,7 +28,6 @@ public class Question {
   }
 
   public Question() {
-
   }
 
   public int getQuestion_id() {

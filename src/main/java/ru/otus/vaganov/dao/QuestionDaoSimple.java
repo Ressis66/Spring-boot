@@ -2,6 +2,7 @@ package ru.otus.vaganov.dao;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,8 @@ import java.io.FileReader;
 
 
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 @Component
@@ -19,9 +22,10 @@ public class QuestionDaoSimple implements QuestionDao {
 
   private List<Question> questions;
 
-  public QuestionDaoSimple(@Value("${datasource.data}") String data) throws FileNotFoundException {
+
+    public QuestionDaoSimple(MessageSource messageSource) throws FileNotFoundException {
     List<Question> questions = new CsvToBeanBuilder<Question>
-        (new FileReader(data)).withType(Question.class)
+        (new FileReader(messageSource.getMessage("env.locale", null, Locale.getDefault()))).withType(Question.class)
         .build()
         .parse();
     this.questions= questions;

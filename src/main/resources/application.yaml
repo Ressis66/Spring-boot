@@ -1,6 +1,8 @@
 datasource:
-  data: src/main/resources/QuestionsList.csv
+  data-en: /QuestionsList_EN.csv
+  data_ru: /QuestionsList_RU.csv
 
 spring:
     main:
       lazy-initialization: true
+
